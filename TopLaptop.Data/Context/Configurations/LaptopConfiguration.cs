@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TopLaptop.Data.Entities.Laptops;
-using TopLaptop.Data.Entities.Laptops.LaptopParts;
 using TopLaptop.Data.Entities.Other;
 
 namespace TopLaptop.Data.Context.Configurations
@@ -38,6 +37,11 @@ namespace TopLaptop.Data.Context.Configurations
             laptop.HasOne(l => l.Image)
                 .WithOne(i => i.Laptop)
                 .HasForeignKey<Image>(i => i.LaptopId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            laptop.HasOne(l => l.EmployeeRespondent)
+                .WithMany(e => e.ManagedLaptops)
+                .HasForeignKey(l => l.EmployeeId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

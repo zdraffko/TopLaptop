@@ -10,9 +10,11 @@ namespace TopLaptop.Data.Entities.Orders
 
         public DateTime OrderDate { get; set; }
 
+        public int OrderedQuantity { get; set; }
+
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
 
-        public ICollection<LaptopOrder> OrderedLaptops { get; set; } = new HashSet<LaptopOrder>();
+        public ICollection<LaptopOrder> OrderedLaptops { get; set; } = new List<LaptopOrder>();
     }
 }

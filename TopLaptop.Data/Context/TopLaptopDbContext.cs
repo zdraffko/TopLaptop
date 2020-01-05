@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TopLaptop.Data.Entities.Orders;
 using TopLaptop.Data.Entities.Other;
-using TopLaptop.Data.Entities.Laptop;
+using TopLaptop.Data.Entities.Laptops;
 using TopLaptop.Data.Entities.Users;
-using TopLaptop.Data.Entities.Laptop.LaptopParts;
+using TopLaptop.Data.Entities.Laptops.LaptopParts;
 
 namespace TopLaptop.Data.Context
 {
@@ -27,6 +28,8 @@ namespace TopLaptop.Data.Context
         public DbSet<Image> Images { get; set; }
 
         public DbSet<Order> Orders { get; set; }
+
+        public DbSet<LaptopOrder> LaptopOrders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

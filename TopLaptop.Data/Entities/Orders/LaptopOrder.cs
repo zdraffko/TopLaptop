@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TopLaptop.Data.Entities.Laptops;
+﻿using TopLaptop.Data.Entities.Laptops;
 
 namespace TopLaptop.Data.Entities.Orders
 {
