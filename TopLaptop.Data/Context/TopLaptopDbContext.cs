@@ -7,8 +7,11 @@ using TopLaptop.Data.Entities.Laptops.LaptopParts;
 
 namespace TopLaptop.Data.Context
 {
-    class TopLaptopDbContext : DbContext
+    public class TopLaptopDbContext : DbContext
     {
+        public TopLaptopDbContext(DbContextOptions<TopLaptopDbContext> options) : base(options) { }
+
+
         public DbSet<Customer> Customers { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
