@@ -4,7 +4,6 @@ using TopLaptop.Data.Entities.Laptops.LaptopParts;
 using TopLaptop.Data.Entities.Orders;
 using TopLaptop.Data.Entities.Other;
 using TopLaptop.Data.Entities.Users;
-using static TopLaptop.Data.Validation.DataValidation;
 
 namespace TopLaptop.Data.Entities.Laptops
 {
@@ -13,7 +12,6 @@ namespace TopLaptop.Data.Entities.Laptops
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(FirstNameMaxLength)]
         public string Name { get; set; }
 
         public decimal Price { get; set; }
@@ -24,7 +22,6 @@ namespace TopLaptop.Data.Entities.Laptops
 
         public int Quantity { get; set; }
 
-        [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
 
         public Image Image { get; set; }

@@ -4,13 +4,20 @@ using TopLaptop.Data.Entities.Other;
 using TopLaptop.Data.Entities.Laptops;
 using TopLaptop.Data.Entities.Users;
 using TopLaptop.Data.Entities.Laptops.LaptopParts;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using TopLaptop.Data.Identity;
 
 namespace TopLaptop.Data.Context
 {
-    public class TopLaptopDbContext : DbContext
+    public class TopLaptopDbContext : IdentityDbContext<ApplicationUser>
     {
         public TopLaptopDbContext(DbContextOptions<TopLaptopDbContext> options) : base(options) { }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
+        }
 
         public DbSet<Customer> Customers { get; set; }
 
@@ -33,10 +40,5 @@ namespace TopLaptop.Data.Context
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<LaptopOrder> LaptopOrders { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
-        }
     }
 }
