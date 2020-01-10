@@ -1,8 +1,14 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@{ ViewData["Title"] = "Home"; }
+@inject SignInManager<ApplicationUser>  signInManager;
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to the best laptop store</h1>
-    <p>Please Log in or Register to continue</p>
+    @if (signInManager.IsSignedIn(User))
+    {
+        <h2>Here are some of our best offers!</h2>
+    }
+    else
+    {
+        <h1 class="display-4">Welcome to the best laptop store</h1>
+        <p>Please Log in or Register to continue</p>
+    }
 </div>
