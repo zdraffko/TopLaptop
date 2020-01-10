@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using TopLaptop.Data.Identity;
 using TopLaptop.Web.ViewModels;
 
@@ -99,6 +94,22 @@ namespace TopLaptop.Web.Controllers
             }
 
             return View();
+        }
+
+        [HttpGet]
+        [HttpPost]
+        public async Task<IActionResult> CheckIfEmailIsInUse(string email)
+        {
+            var appUser = await userManager.FindByEmailAsync(email);
+            return appUser == null ? Json(true) : Json($"The Email '{email}' is already in use");
+        }
+
+        [HttpGet]
+        [HttpPost]
+        public async Task<IActionResult> CheckIfUsernameIsInUse(string username)
+        {
+            var appUser = await userManager.FindByNameAsync(username);
+            return appUser == null ? Json(true) : Json($"The Username '{username}' is already in use");
         }
     }
 }

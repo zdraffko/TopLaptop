@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace TopLaptop.Web.ViewModels
 {
@@ -13,10 +14,12 @@ namespace TopLaptop.Web.ViewModels
         public string LastName { get; set; }
 
         [Required]
+        [Remote("CheckIfUsernameIsInUse", "Account")]
         public string Username { get; set; }
 
         [Required]
         [EmailAddress]
+        [Remote("CheckIfEmailIsInUse", "Account")]
         public string Email { get; set; }
 
         [Required]
