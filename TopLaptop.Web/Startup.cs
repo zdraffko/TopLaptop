@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,12 +30,20 @@ namespace TopLaptop.Web
         {
             services.AddControllersWithViews();
 
+            services.AddRouting(options => options.LowercaseUrls = true);
+
+            services.AddMvc(options => options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
+
             services.AddDbContext<TopLaptopDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection"))
                 );
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<TopLaptopDbContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+            }).AddEntityFrameworkStores<TopLaptopDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
