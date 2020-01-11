@@ -1,0 +1,43 @@
+﻿@{ ViewData["Title"] = "Laptop Parts"; }
+
+<div style="display:flex; flex-wrap:wrap;">
+    <div class="col-sm-4" style="margin-bottom: 30px;">
+        <div class="card" style="text-align:center">
+            <h2>Brands</h2>
+            <img src="~/images/laptopParts/brand.jpg" class="card-img-top" alt="Laptop Brand">
+            <a asp-controller="Brands" asp-action="Index" class="btn btn-outline-primary" style="margin:25px">Manage</a>
+        </div>
+    </div>
+
+    <div class="col-sm-4" style="margin-bottom: 30px;">
+        <div class="card" style="text-align:center">
+            <h2>Graphics Cards</h2>
+            <img src="~/images/laptopParts/graphicsCard.png" class="card-img-top" alt="Laptop Graphics Card">
+            <a asp-controller="GraphicsCards" asp-action="Index" class="btn btn-outline-primary" style="margin:25px">Manage</a>
+        </div>
+    </div>
+
+    <div class="col-sm-4" style="margin-bottom: 30px;">
+        <div class="card" style="text-align:center">
+            <h2>Processors</h2>
+            <img src="~/images/laptopParts/processor.png" class="card-img-top" alt="Laptop Processor">
+            <a href="#" class="btn btn-outline-primary" style="margin:25px">Manage</a>
+        </div>
+    </div>
+
+    <div class="col-sm-4" style="margin-bottom: 30px;">
+        <div class="card" style="text-align:center">
+            <h2>RAM Storages</h2>
+            <img src="~/images/laptopParts/ramStorage.jpg" class="card-img-top" alt="Laptop RAM Storage">
+            <a href="#" class="btn btn-outline-primary" style="margin:25px">Manage</a>
+        </div>
+    </div>
+
+    <div class="col-sm-4" style="margin-bottom: 30px;">
+        <div class="card" style="text-align:center">
+            <h2>Storages</h2>
+            <img src="~/images/laptopParts/storage.jpg" class="card-img-top" alt="Laptop Storage">
+            <a href="#" class="btn btn-outline-primary" style="margin:25px">Manage</a>
+        </div>
+    </div>
+</div>

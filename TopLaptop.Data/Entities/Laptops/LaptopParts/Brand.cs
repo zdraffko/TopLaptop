@@ -8,6 +8,7 @@ namespace TopLaptop.Data.Entities.Laptops.LaptopParts
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Brand Name")]
         public string BrandName { get; set; }
 
         public ICollection<Laptop> Laptops { get; set; } = new List<Laptop>();
