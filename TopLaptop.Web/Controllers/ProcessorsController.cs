@@ -7,18 +7,18 @@ using TopLaptop.Data.Entities.Laptops.LaptopParts;
 
 namespace TopLaptop.Web.Controllers
 {
-    public class BrandsController : Controller
+    public class ProcessorsController : Controller
     {
         private readonly TopLaptopDbContext _context;
 
-        public BrandsController(TopLaptopDbContext context)
+        public ProcessorsController(TopLaptopDbContext context)
         {
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Brands.ToListAsync());
+            return View(await _context.Processors.ToListAsync());
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -28,14 +28,14 @@ namespace TopLaptop.Web.Controllers
                 return NotFound();
             }
 
-            var brand = await _context.Brands
+            var processor = await _context.Processors
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (brand == null)
+            if (processor == null)
             {
                 return NotFound();
             }
 
-            return View(brand);
+            return View(processor);
         }
 
         public IActionResult Create()
@@ -45,15 +45,15 @@ namespace TopLaptop.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,BrandName")] Brand brand)
+        public async Task<IActionResult> Create([Bind("Id,Manufacturer,Model")] Processor processor)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(brand);
+                _context.Add(processor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(brand);
+            return View(processor);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -63,19 +63,19 @@ namespace TopLaptop.Web.Controllers
                 return NotFound();
             }
 
-            var brand = await _context.Brands.FindAsync(id);
-            if (brand == null)
+            var processor = await _context.Processors.FindAsync(id);
+            if (processor == null)
             {
                 return NotFound();
             }
-            return View(brand);
+            return View(processor);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,BrandName")] Brand brand)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Manufacturer,Model")] Processor processor)
         {
-            if (id != brand.Id)
+            if (id != processor.Id)
             {
                 return NotFound();
             }
@@ -84,12 +84,12 @@ namespace TopLaptop.Web.Controllers
             {
                 try
                 {
-                    _context.Update(brand);
+                    _context.Update(processor);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BrandExists(brand.Id))
+                    if (!ProcessorExists(processor.Id))
                     {
                         return NotFound();
                     }
@@ -100,7 +100,7 @@ namespace TopLaptop.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(brand);
+            return View(processor);
         }
 
         public async Task<IActionResult> Delete(int? id)
@@ -110,29 +110,29 @@ namespace TopLaptop.Web.Controllers
                 return NotFound();
             }
 
-            var brand = await _context.Brands
+            var processor = await _context.Processors
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (brand == null)
+            if (processor == null)
             {
                 return NotFound();
             }
 
-            return View(brand);
+            return View(processor);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var brand = await _context.Brands.FindAsync(id);
-            _context.Brands.Remove(brand);
+            var processor = await _context.Processors.FindAsync(id);
+            _context.Processors.Remove(processor);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BrandExists(int id)
+        private bool ProcessorExists(int id)
         {
-            return _context.Brands.Any(e => e.Id == id);
+            return _context.Processors.Any(e => e.Id == id);
         }
     }
 }

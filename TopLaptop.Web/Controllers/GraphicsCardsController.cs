@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TopLaptop.Data.Context;
 using TopLaptop.Data.Entities.Laptops.LaptopParts;
@@ -19,13 +16,11 @@ namespace TopLaptop.Web.Controllers
             _context = context;
         }
 
-        // GET: GraphicsCards
         public async Task<IActionResult> Index()
         {
             return View(await _context.GraphicsCards.ToListAsync());
         }
 
-        // GET: GraphicsCards/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,15 +38,11 @@ namespace TopLaptop.Web.Controllers
             return View(graphicsCard);
         }
 
-        // GET: GraphicsCards/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: GraphicsCards/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Manufacturer,Model")] GraphicsCard graphicsCard)
@@ -65,7 +56,6 @@ namespace TopLaptop.Web.Controllers
             return View(graphicsCard);
         }
 
-        // GET: GraphicsCards/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,9 +71,6 @@ namespace TopLaptop.Web.Controllers
             return View(graphicsCard);
         }
 
-        // POST: GraphicsCards/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Manufacturer,Model")] GraphicsCard graphicsCard)
@@ -116,7 +103,6 @@ namespace TopLaptop.Web.Controllers
             return View(graphicsCard);
         }
 
-        // GET: GraphicsCards/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +120,6 @@ namespace TopLaptop.Web.Controllers
             return View(graphicsCard);
         }
 
-        // POST: GraphicsCards/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
