@@ -43,6 +43,7 @@ namespace TopLaptop.Web.Controllers
 
                 if (identityResult.Succeeded)
                 {
+                    await userManager.AddToRoleAsync(appUser, viewModel.RegistrationType);
                     await signInManager.SignInAsync(appUser, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }

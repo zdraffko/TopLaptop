@@ -12,10 +12,6 @@ namespace TopLaptop.Web.ViewModels
         public string Password { get; set; }
 
         [Required]
-        [Display(Name = "Account Type")]
-        public string AccountType { get; set; }
-
-        [Required]
         [Display(Name = "Remember me")]
         public bool IsRemembered { get; set; }
     }
